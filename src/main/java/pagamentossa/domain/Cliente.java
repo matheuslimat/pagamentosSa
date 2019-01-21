@@ -21,9 +21,6 @@ public class Cliente implements Serializable {
 	@Column(name = "NOME")
 	private String nome;
 	
-	@Column(name = "EMAIL")
-	private String email;
-	
 	@Column(name = "CPF")
 	private String cpf;
 	
@@ -33,6 +30,15 @@ public class Cliente implements Serializable {
 	@Column(name = "SEXO")
 	private String sexo;
 
+	@Column(name = "EMAIL")
+	private String email;
+	
+	@Column(name = "LOGIN")
+	private String login;
+	
+	@Column(name = "SENHA")
+	private String senha;
+	
 	public Cliente() {};
 	
 	public Cliente(Long id, String nome, String email, String cpf, Date dtNascimento, String sexo) {
