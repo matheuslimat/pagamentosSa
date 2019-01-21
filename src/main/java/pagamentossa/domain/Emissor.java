@@ -7,15 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "EMISSORES")
 public class Emissor implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	// mudar esse id
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CNPJ")
+	@Column(name = "ID_EMISSOR")
 	private Long id;
 	
 	@Column(name = "NOME_FANTASIA")
@@ -23,18 +24,13 @@ public class Emissor implements Serializable {
 	
 	public Emissor() {}
 
-	public Emissor(Long id, String nomeFantasia) {
+	public Emissor(String nomeFantasia) {
 		super();
-		this.id = id;
 		this.nomeFantasia = nomeFantasia;
 	}
 
 	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getNomeFantasia() {

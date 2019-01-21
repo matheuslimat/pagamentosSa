@@ -13,10 +13,9 @@ import javax.persistence.Id;
 public class Cartao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	// mudar esse id
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "NUM_CARTAO")
+	@Column(name = "ID_CONTA")
 	private Long id;
 	
 	@Column(name = "NOME_EMBOSSADO")
