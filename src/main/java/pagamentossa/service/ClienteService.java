@@ -15,16 +15,17 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
-	public void createCliente(Cliente cliente) {
-		clienteRepository.save(cliente);
+	public Cliente createCliente(Cliente cliente) {
+		return clienteRepository.save(cliente);
 	}
 	
 	public List<Cliente> readAllCliente(){
 		return clienteRepository.findAll();
 	}
 	
-	public Optional<Cliente> readById(Long id) {
-		return clienteRepository.findById(id);
+	public Cliente readById(Long id) {
+		return clienteRepository.findById(id).orElseThrow(() -> 
+		new IllegalArgumentException("Id inválido. Por favor, tente novamente!")) ;
 	}
 	
 	public void updateCliente(Cliente cliente) {

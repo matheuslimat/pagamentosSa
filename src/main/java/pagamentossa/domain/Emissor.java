@@ -22,7 +22,9 @@ public class Emissor implements Serializable {
 	@Column(name = "NOME_FANTASIA")
 	private String nomeFantasia;
 	
-	public Emissor() {}
+	public Emissor() {
+		
+	}
 
 	public Emissor(String nomeFantasia) {
 		super();
