@@ -36,15 +36,5 @@ public class ClienteService {
 		clienteRepository.deleteById(id);
 	}
 
-	public String getNumCartao(String cpf, String bin) {
-		int max = 100000000;
-		int min = 0;
-		String parte1 = cpf.substring(0, 4);
-		parte1 = parte1.concat(bin);
 
-		Random gerador = new Random();
-		int num = gerador.nextInt((max - min) + min);
-		parte1 = parte1 + num;
-		return parte1;
-	}
 }
