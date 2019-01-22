@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: pagamentossa
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: mateuslourenco
+Built-By: thiag
 Implementation-Vendor-Id: br.cesed.si.pagamentossa
-Build-Jdk: 1.8.0_181
+Build-Jdk: 1.8.0_144
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/pagamentossa
 Created-By: Maven Integration for Eclipse
