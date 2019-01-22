@@ -23,15 +23,15 @@ public class Cliente implements Serializable {
 	@Column(name = "NOME")
 	private String nome;
 
-	@Column(name = "CPF")
+	@Column(name = "CPF", unique = true, nullable = false, length = 11)
 	private String cpf;
 
 	@Column(name = "DATA_NASCIMENTO")
 	private Date dtNascimento;
 
-	@Column(name = "SEXO")
+	@Column(name = "SEXO", length = 10)
 	private String sexo;
-
+	
 	public Cliente() {
 	};
 

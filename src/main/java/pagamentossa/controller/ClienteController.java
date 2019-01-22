@@ -8,10 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import pagamentossa.domain.Cliente;
@@ -24,31 +25,31 @@ public class ClienteController {
 	private ClienteService clienteService;
 
 	@GetMapping(path = "/{id}")
-	public @ResponseBody ResponseEntity<Cliente> readCliente(@RequestParam Long id) {
+	public @ResponseBody ResponseEntity<Cliente> readCliente(@PathVariable Long id) {
 		return new ResponseEntity<Cliente>(HttpStatus.OK);
 
 	}
 
 	@PostMapping("/new")
-	public @ResponseBody ResponseEntity<Cliente> createCliente(@RequestParam Cliente cliente) {
-		return new ResponseEntity<>(HttpStatus.CREATED);
+	public ResponseEntity<Cliente> createCliente(@RequestBody Cliente cliente) {
+		return new ResponseEntity<Cliente>(clienteService.createCliente(cliente), HttpStatus.CREATED);
 
 	}
 
 	@PutMapping("/atualizacao")
-	public @ResponseBody ResponseEntity<Cliente> updateCliente(@RequestParam Cliente cliente) {
+	public ResponseEntity<Cliente> updateCliente(@RequestBody Cliente cliente) {
 		clienteService.updateCliente(cliente);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<Cliente>(HttpStatus.OK);
 
 	}
 
 	@GetMapping("/all")
-	public @ResponseBody ResponseEntity<List<Cliente>> readAll() {
+	public ResponseEntity<List<Cliente>> readAll() {
 		return new ResponseEntity<List<Cliente>>(clienteService.readAllCliente(), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")
-	public @ResponseBody ResponseEntity<Cliente> deleteCliente(@RequestParam Long id) {
+	public ResponseEntity<Cliente> deleteCliente(@PathVariable Long id) {
 		clienteService.deleteCliente(id);
 		return new ResponseEntity<Cliente>(HttpStatus.OK);
 	}

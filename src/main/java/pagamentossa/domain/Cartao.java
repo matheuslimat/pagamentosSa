@@ -8,8 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "CARTOES")
 public class Cartao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -21,8 +25,8 @@ public class Cartao implements Serializable {
 	@Column(name = "NOME_EMBOSSADO")
 	private String nomeEmbossado;
 	
-	@Column(name = "TIPO_CARTAO")
-	private String tipoCartao;
+	@Column(name = "NUM_CARTAO", unique = true)
+	private Long numeroCartao;
 	
 	@Column(name = "DATA_VALIDADE")
 	private Date dtValidade;
@@ -30,29 +34,28 @@ public class Cartao implements Serializable {
 	@Column(name = "DATA_EMISSAO")
 	private Date dtEmissao;
 
-	@Column(name = "CVV")
+	@Column(name = "CVV", length = 3)
 	private String cvv;
 	
 	@Column(name = "NOME_EMISSOR")
 	private String nomeEmissor;
 	
-	@Column(name = "NOME_GRAFICA")
-	private String nomeGrafica;
+	@OneToOne
+	@JoinColumn(name = "CONTA_ID")
+	private Conta conta;
 	
-	public Cartao() {};
+	public Cartao() {
+		
+	};
 	
 
-	public Cartao(Long id, String nomeEmbossado, String tipoCartao, Date dtValidade, Date dtEmissao, String cvv,
-			String nomeEmissor, String nomeGrafica) {
-		super();
-		this.id = id;
+	public Cartao(String nomeEmbossado, Date dtValidade, Date dtEmissao, String cvv,
+			String nomeEmissor) {
 		this.nomeEmbossado = nomeEmbossado;
-		this.tipoCartao = tipoCartao;
 		this.dtValidade = dtValidade;
 		this.dtEmissao = dtEmissao;
 		this.cvv = cvv;
 		this.nomeEmissor = nomeEmissor;
-		this.nomeGrafica = nomeGrafica;
 	}
 
 
@@ -73,16 +76,6 @@ public class Cartao implements Serializable {
 
 	public void setNomeEmbossado(String nomeEmbossado) {
 		this.nomeEmbossado = nomeEmbossado;
-	}
-
-
-	public String getTipoCartao() {
-		return tipoCartao;
-	}
-
-
-	public void setTipoCartao(String tipoCartao) {
-		this.tipoCartao = tipoCartao;
 	}
 
 
@@ -125,17 +118,4 @@ public class Cartao implements Serializable {
 		this.nomeEmissor = nomeEmissor;
 	}
 
-
-	public String getNomeGrafica() {
-		return nomeGrafica;
-	}
-
-
-	public void setNomeGrafica(String nomeGrafica) {
-		this.nomeGrafica = nomeGrafica;
-	}
-
-	
-	
-	
 }
