@@ -1,12 +1,17 @@
 package pagamentossa.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +26,16 @@ public class Emissor implements Serializable {
 	
 	@Column(name = "NOME_FANTASIA")
 	private String nomeFantasia;
+	
+	@Column(name = "CNPJ")
+	private String cnpj;
+	
+	@OneToMany
+	@JoinColumn(name = "CLIENTE_ID")
+	private List<Conta> contas;
+	
+	@ManyToMany
+	private Cliente cliente;
 	
 	public Emissor() {
 		

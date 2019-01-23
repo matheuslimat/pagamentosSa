@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +33,12 @@ public class Cliente implements Serializable {
 
 	@Column(name = "SEXO", length = 10)
 	private String sexo;
+	
+	@OneToOne
+	private Conta conta;
+	
+	@ManyToMany(mappedBy = "EMISSORES")
+	private Emissor emissor;
 	
 	public Cliente() {
 	};

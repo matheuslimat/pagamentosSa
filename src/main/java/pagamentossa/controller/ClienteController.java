@@ -13,39 +13,40 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import pagamentossa.domain.Cliente;
+import pagamentossa.dto.CriacaoClienteContaDTO;
 import pagamentossa.service.ClienteService;
 
 @Controller
 @RequestMapping(path = "/clientes")
 public class ClienteController {
+	
 	@Autowired
 	private ClienteService clienteService;
 
 	@GetMapping(path = "/{id}")
-	public @ResponseBody ResponseEntity<Cliente> readCliente(@PathVariable Long id) {
+	public ResponseEntity<Cliente> readCliente(@PathVariable Long id) {
 		return new ResponseEntity<Cliente>(HttpStatus.OK);
 
 	}
 
-	@PostMapping("/new")
-	public ResponseEntity<Cliente> createCliente(@RequestBody Cliente cliente) {
-		return new ResponseEntity<Cliente>(clienteService.createCliente(cliente), HttpStatus.CREATED);
+	@PostMapping
+	public ResponseEntity<Cliente> createCliente(@RequestBody CriacaoClienteContaDTO clienteDTO) {
+		return new ResponseEntity<Cliente>(clienteService.createCliente(clienteDTO), HttpStatus.CREATED);
 
 	}
 
-	@PutMapping("/atualizacao")
+	@PutMapping
 	public ResponseEntity<Cliente> updateCliente(@RequestBody Cliente cliente) {
 		clienteService.updateCliente(cliente);
 		return new ResponseEntity<Cliente>(HttpStatus.OK);
 
 	}
 
-	@GetMapping("/all")
+	@GetMapping
 	public ResponseEntity<List<Cliente>> readAll() {
-		return new ResponseEntity<List<Cliente>>(clienteService.readAllCliente(), HttpStatus.OK);
+		return new ResponseEntity<List<Cliente>>(clienteService.readAll(), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")

@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 
 @Entity
 @Table(name = "CONTAS")
@@ -20,6 +21,7 @@ public class Conta {
 	@Column(name = "ID_CONTA")
 	private Long id;
 	
+	@Email
 	@Column(name = "EMAIL", length = 100, unique = true, nullable = false)
 	private String email;
 	
@@ -31,7 +33,6 @@ public class Conta {
 	private Cliente cliente;
 	
 	@ManyToOne
-	@JoinColumn(name = "EMISSOR_ID")
 	private Emissor emissor;
 	
 	@OneToOne
