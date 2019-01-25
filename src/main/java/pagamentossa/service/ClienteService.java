@@ -19,18 +19,8 @@ public class ClienteService {
 	private ContaService contaService;
 
 	public Cliente createCliente(CriacaoClienteContaDTO clienteDTO) {
-		Cliente cliente = fromDto(clienteDTO);
 		contaService.createConta(contaService.fromDto(clienteDTO));
-		return clienteRepository.save(cliente);
-	}
-
-	private Cliente fromDto(CriacaoClienteContaDTO clienteDTO) {
-		Cliente cliente = new Cliente();
-		cliente.setNome(clienteDTO.getNome());
-		cliente.setCpf(clienteDTO.getCpf());
-		cliente.setDtNascimento(clienteDTO.getDtNascimento());
-		cliente.setSexo(clienteDTO.getSexo());
-		return cliente;
+		return clienteRepository.save(fromDto(clienteDTO));
 	}
 
 	public List<Cliente> readAll() {
@@ -42,12 +32,20 @@ public class ClienteService {
 				.orElseThrow(() -> new IllegalArgumentException("Id inválido. Por favor, tente novamente!"));
 	}
 
-	public void updateCliente(Cliente cliente) {
-		clienteRepository.save(cliente);
+	public void updateCliente(CriacaoClienteContaDTO clienteDTO) {
+		clienteRepository.save(fromDto(clienteDTO));
 	}
 
 	public void deleteCliente(Long id) {
 		readById(id);
 		clienteRepository.deleteById(id);
+	}
+
+	private Cliente fromDto(CriacaoClienteContaDTO clienteDTO) {
+		return new Cliente(
+		clienteDTO.getNome(),
+		clienteDTO.getCpf(),
+		clienteDTO.getDataNascimento(),
+		clienteDTO.getSexo());
 	}
 }

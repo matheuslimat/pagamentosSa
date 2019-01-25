@@ -6,34 +6,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pagamentossa.domain.Emissor;
+import pagamentossa.dto.EmissorDTO;
 import pagamentossa.repository.EmissorRepository;
 
 @Service
-public class EmissorService{
-	
+public class EmissorService {
+
 	@Autowired
 	private EmissorRepository emissorRepository;
 
-	public Emissor createEmissor(Emissor emissor) {
-		return emissorRepository.save(emissor);
+	public Emissor createEmissor(EmissorDTO emissorDTO) {
+		return emissorRepository.save(fromDto(emissorDTO));
 	}
-	
-	public List<Emissor> readAll(){
+
+	public List<Emissor> readAll() {
 		return emissorRepository.findAll();
 	}
-	
+
 	public Emissor readById(Long id) {
-		return emissorRepository.findById(id).orElseThrow(() -> 
-		new IllegalArgumentException("Id inválido. Por favor, tente novamente!")) ;
+		return emissorRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Id inválido. Por favor, tente novamente!"));
 	}
-	
+
 	public void updateEmissor(Emissor emissor) {
 		emissorRepository.save(emissor);
 	}
-	
+
 	public void deleteEmissor(Long id) {
 		readById(id);
 		emissorRepository.deleteById(id);
 	}
-	
+
+	private Emissor fromDto(EmissorDTO emissorDTO) {
+		return new Emissor(emissorDTO.getNomeFantasia(), emissorDTO.getCnpj());
+	}
 }

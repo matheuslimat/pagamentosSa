@@ -3,20 +3,20 @@ package pagamentossa.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class CriacaoClienteContaDTO implements Serializable{
+public class CriacaoClienteContaDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private String nome;
 
 	private String cpf;
 
-	private Date dtNascimento;
+	private Date dataNascimento;
 
 	private String sexo;
-	
+
 	private String email;
-	
+
 	private String senha;
 
 	public String getNome() {
@@ -35,12 +35,12 @@ public class CriacaoClienteContaDTO implements Serializable{
 		this.cpf = cpf;
 	}
 
-	public Date getDtNascimento() {
-		return dtNascimento;
+	public Date getDataNascimento() {
+		return dataNascimento;
 	}
 
-	public void setDtNascimento(Date dtNascimento) {
-		this.dtNascimento = dtNascimento;
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	public String getSexo() {

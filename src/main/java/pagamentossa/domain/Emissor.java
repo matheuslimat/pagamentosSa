@@ -9,41 +9,41 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.br.CNPJ;
+
 @Entity
-@Table(name = "EMISSORES")
+@Table(name = "emissores")
 public class Emissor implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_EMISSOR")
+	@Column(name = "id_emissor")
 	private Long id;
-	
-	@Column(name = "NOME_FANTASIA")
+
+	@Column(name = "nome_fantasia")
 	private String nomeFantasia;
-	
-	@Column(name = "CNPJ")
+
+	@CNPJ
 	private String cnpj;
-	
+
+	private String token;
+
 	@OneToMany
-	@JoinColumn(name = "CLIENTE_ID")
+	@JoinColumn(name = "emissor_id")
 	private List<Conta> contas;
-	
-	@ManyToMany
-	private Cliente cliente;
-	
+
 	public Emissor() {
-		
+
 	}
 
-	public Emissor(String nomeFantasia) {
+	public Emissor(String nomeFantasia, String cnpj) {
 		super();
 		this.nomeFantasia = nomeFantasia;
+		this.cnpj = cnpj;
 	}
 
 	public Long getId() {
@@ -58,5 +58,20 @@ public class Emissor implements Serializable {
 		this.nomeFantasia = nomeFantasia;
 	}
 
-	
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 }

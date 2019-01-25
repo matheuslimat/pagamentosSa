@@ -21,15 +21,9 @@ import pagamentossa.service.ClienteService;
 @Controller
 @RequestMapping(path = "/clientes")
 public class ClienteController {
-	
+
 	@Autowired
 	private ClienteService clienteService;
-
-	@GetMapping(path = "/{id}")
-	public ResponseEntity<Cliente> readCliente(@PathVariable Long id) {
-		return new ResponseEntity<Cliente>(HttpStatus.OK);
-
-	}
 
 	@PostMapping
 	public ResponseEntity<Cliente> createCliente(@RequestBody CriacaoClienteContaDTO clienteDTO) {
@@ -37,9 +31,8 @@ public class ClienteController {
 
 	}
 
-	@PutMapping
-	public ResponseEntity<Cliente> updateCliente(@RequestBody Cliente cliente) {
-		clienteService.updateCliente(cliente);
+	@GetMapping(path = "/{id}")
+	public ResponseEntity<Cliente> readCliente(@PathVariable Long id) {
 		return new ResponseEntity<Cliente>(HttpStatus.OK);
 
 	}
@@ -48,7 +41,14 @@ public class ClienteController {
 	public ResponseEntity<List<Cliente>> readAll() {
 		return new ResponseEntity<List<Cliente>>(clienteService.readAll(), HttpStatus.OK);
 	}
-	
+
+	@PutMapping
+	public ResponseEntity<Cliente> updateCliente(@RequestBody CriacaoClienteContaDTO clienteDTO) {
+		clienteService.updateCliente(clienteDTO);
+		return new ResponseEntity<Cliente>(HttpStatus.OK);
+
+	}
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Cliente> deleteCliente(@PathVariable Long id) {
 		clienteService.deleteCliente(id);

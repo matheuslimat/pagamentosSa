@@ -13,35 +13,35 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CARTOES")
+@Table(name = "cartoes")
 public class Cartao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_CONTA")
+	@Column(name = "id_cartao")
 	private Long id;
 	
-	@Column(name = "NOME_EMBOSSADO")
+	@Column(name = "nome_embossing")
 	private String nomeEmbossado;
 	
-	@Column(name = "NUM_CARTAO", unique = true)
+	@Column(name = "numero_cartao", unique = true)
 	private Long numeroCartao;
 	
-	@Column(name = "DATA_VALIDADE")
+	@Column(name = "data_validade")
 	private Date dtValidade;
 	
-	@Column(name = "DATA_EMISSAO")
+	@Column(name = "data_emissao")
 	private Date dtEmissao;
 
-	@Column(name = "CVV", length = 3)
+	@Column(length = 3)
 	private String cvv;
 	
-	@Column(name = "NOME_EMISSOR")
+	@Column(name = "nome_emissor")
 	private String nomeEmissor;
 	
 	@OneToOne
-	@JoinColumn(name = "CONTA_ID")
+	@JoinColumn(name = "conta_id")
 	private Conta conta;
 	
 	public Cartao() {
@@ -116,6 +116,10 @@ public class Cartao implements Serializable {
 
 	public void setNomeEmissor(String nomeEmissor) {
 		this.nomeEmissor = nomeEmissor;
+	}
+	
+	public Conta getConta() {
+		return this.conta;
 	}
 
 }
